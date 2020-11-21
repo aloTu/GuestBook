@@ -1,0 +1,126 @@
+﻿body {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-image:url(image/wallhaven-vg7lv3.jpg);
+    background-size:cover;
+    width:100%;
+    padding-top:180px;
+}
+.container{
+    margin-top:150px;
+    width:auto;
+}
+form p{
+    padding:16px;
+    position:relative;
+}
+form p input{
+    background-color:transparent;
+    border:0;
+    width:260px;
+    padding-left:33px;
+    padding-bottom:5px;
+    color:aliceblue;
+    border-bottom:1px solid #ccc;
+    font-family:Arial;
+}
+#submit{
+    border: 0;
+    background-color: transparent;
+    float:right;
+    font-size:2.2rem;
+    color:lavenderblush;
+    opacity:0.9;
+    padding:0 15px;
+}
+#submit:hover {
+    border: 1px solid lavenderblush;
+    border-width: 0 0 2px 0;
+}
+#submit:focus{
+    outline:0;
+}
+.iconfont {
+    font-size: 26px;
+    color: #ddd;
+    font-weight: 300;
+    position: absolute;
+    top: 5px;
+    left: 18px;
+}
+form p input:focus {
+    outline: 0;
+    border-color:aliceblue;
+}
+textarea {
+    resize: none;
+}
+
+.toast {
+    position: absolute;
+    overflow: hidden;
+    right: -200px;
+    color: #555;
+    top: 20px;
+    border: 1px solid #777;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.showtoast {
+    right: 20px;
+    transition: right .8s ease-in-out .2s;
+}
+
+.toast span {
+    color: red;
+    padding: 0 8px;
+}
+
+.toast hr {
+    margin: 7px;
+}
+
+.toast .toast-header {
+    padding: 7px;
+}
+
+.toast .toast-header h2 {
+        display: inline-block;
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin: 0px;
+    }
+
+.toast .toast-body {
+    padding: 0 7px 5px;
+}
+
+.toast .toast-body ul {
+    padding: 0 18px;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.toast .progress {
+    margin: 0px;
+    height: 6px;
+    border-radius: 0px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.toast .progress .progress-bar {
+    background-color: #f40;
+    float: right;
+    width: 0%;
+}
+
+.toast .progress .waited {
+    width: 100%;
+    transition: width 4s linear 1s;
+}
+

@@ -1,0 +1,51 @@
+﻿@model List<GuestBook.Models.Guestbook>
+@{
+    ViewBag.Title = "首页";
+}
+<link href="~/Content/showCard.css" rel="stylesheet" />
+<div class="nav-header">
+    <h2>留言本</h2>
+    <a class="btn btn-default" href="~/Account/Logout" role="button">登出</a>
+</div>
+<span id="type" style="display:none">@ViewData["type"]</span>
+<ul class="nav nav-tabs">
+    <li role="presentation">
+        <a id="addMsg" onclick="openCreateMsg(); return false;">添加留言</a>
+    </li>
+    <li role="presentation">
+        @Html.ActionLink("全部留言", "AllWord")
+    </li>
+    <li role="presentation">
+        @Html.ActionLink("我的留言", "AllWord", new { type = 0 })
+    </li>
+</ul>
+@*<div id="showCreateMsg">
+    <iframe name="main" sandbox="allow-forms" src="~/User/Create"></iframe>
+</div>*@
+
+@foreach (var gb in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                @gb.Title
+                <span>@gb.User.Name</span>
+            </h3>
+            <p>@gb.CreatedOn</p>
+        </div>
+        <div class="panel-body">
+            @gb.Content
+        </div>
+    </div>
+}
+@section scripts{
+    <script>
+        var type = document.getElementById("type").innerHTML;
+        var cur = document.querySelectorAll("li[ role='presentation']")[2 - type];
+        cur.classList.add("active")
+        var btn = document.getElementById("addMsg"); 
+        function openCreateMsg() {
+
+        }
+    </script>
+}

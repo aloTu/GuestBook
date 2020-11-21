@@ -1,0 +1,59 @@
+﻿body {
+    background-color: #ddd;
+    overflow:hidden;
+    padding: 50px 50px;
+}
+.nav-header{
+    display:flex;
+    width:180px;
+    justify-content:space-between;
+    margin-bottom:32px;
+}
+.nav-header .btn {
+    height: 35px;
+    align-self: flex-end;
+    font-weight:bold;
+    box-shadow:3px 3px 6px #99d18f;
+    color:#99d18fcd;
+}
+.panel {
+    box-shadow: 5px 5px 10px #bbb;
+    background-color: #008c8c77;
+    border:0;
+}
+.panel h3{
+    display:inline-block;
+}
+.panel p{
+    font-size:0.6rem;
+    float:right;
+    margin:0;
+    margin-top:5px;
+}
+.panel-title span {
+    font-size: 0.6rem;
+    color: #CE6D39;
+}
+.admin{
+
+}
+#showCreateMsg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background:rgba(22,22,22,.6);
+}
+#showCreateMsg iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 3px solid red;
+    width: 400px;
+    height: 400px;
+}

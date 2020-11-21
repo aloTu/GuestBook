@@ -1,0 +1,24 @@
+﻿@model List<GuestBook.Models.Guestbook>
+@{
+    ViewBag.Title = "首页";
+}
+<link href="~/Content/showCard.css" rel="stylesheet" />
+<div class="nav-header">
+    <h2>留言本</h2>
+    <a class="btn btn-default" href="~/Account/Login" role="button">登录</a>
+</div>
+@foreach (var gb in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                @gb.Title
+                <span>@gb.User.Name</span>
+            </h3>
+            <p>@gb.CreatedOn</p>
+        </div>
+        <div class="panel-body">
+            @gb.Content
+        </div>
+    </div>
+}

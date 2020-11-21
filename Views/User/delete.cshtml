@@ -1,0 +1,14 @@
+﻿@model GuestBook.Models.Guestbook
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>确认是否删除？</h2>
+<p>留言人邮箱：@Model.User.Email</p>
+<p>内容：@Model.Content</p>
+<p>时间：@Model.CreatedOn</p>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="确认删除" />
+}

@@ -1,0 +1,42 @@
+﻿
+@model GuestBook.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+<link href="https://at.alicdn.com/t/font_1330240_pphuduz16c.css" rel="stylesheet" />
+<link href="~/Content/login.css" rel="stylesheet" />
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+        <h2>提交失败</h2>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr />
+    <div class="toast-body">
+        @Html.ValidationSummary()
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    <p>
+        <i class="iconfont icon-user"></i>
+        @Html.EditorFor(a => a.Name)
+        @Html.ValidationMessageFor(a => a.Name)
+    </p>
+    <p>
+        <i class="iconfont icon-mima"></i>
+        @Html.EditorFor(a => a.Password)
+        @Html.ValidationMessageFor(a => a.Password)
+    </p>
+    <input id="submit" type="submit" value="Login" />
+}
+
+@section scripts{
+    <script src="~/Scripts/createMessage.js"></script>
+}

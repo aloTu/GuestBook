@@ -1,0 +1,39 @@
+﻿@model GuestBook.Models.Guestbook
+<link href="~/Content/addMessage.css" rel="stylesheet" />
+<link href='https://cdn.repository.webfont.com/webfonts/nomal/141407/19673/5fb5324ff629d82768627a68.css' rel='stylesheet' type='text/css' />
+<div id="wrapper">
+    <form action="/User/Create" method="post">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                <h2>提交失败</h2>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <hr />
+            <div class="toast-body">
+                @Html.ValidationSummary()
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+        <h2 class="css2480f5cf852285f">我在听...</h2>
+        <p>
+            标题：
+            @Html.TextBoxFor(g => g.Title, new { @class = "form-control" })
+        </p>
+        <p>
+            内容：
+            @Html.TextAreaFor(g => g.Content, new { cols = 20, rows = 5, @class = "form-control" })
+        </p>
+        <input class="btn btn-primary btn-lg btn-block" type="submit" value="发布">
+    </form>
+</div>
+@section scripts{
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/createMessage.js"></script>
+}

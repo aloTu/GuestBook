@@ -1,0 +1,86 @@
+﻿body {
+    color:aliceblue;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-content:center;
+}
+textarea{
+    resize:none;
+}
+#wrapper {
+    display: flex;
+    margin:auto;
+    min-width: 500px;
+    max-width: 600px;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px #444;
+    border-radius: 9px;
+    background-image: url(./image/wallhaven-rd3pjw.jpg);
+    background-size: cover;
+    box-shadow: 10px 10px 20px #002121;
+}
+.toast {
+    position: absolute;
+    overflow:hidden;
+    right: -200px;
+    color:#555;
+    top:20px;
+    border:1px solid #777;
+    border-radius:3px;
+    background-color:#fff;
+}
+.showtoast {
+    right:20px;
+    transition:right .8s ease-in-out .2s;
+}
+.toast span{
+    color:red;
+    padding:0 8px;
+}
+.toast hr{
+    margin:7px;
+}
+.toast .toast-header{
+    padding:7px;
+}
+.toast .toast-header h2{
+    display:inline-block;
+    font-size:1.8rem;
+    font-weight:500;
+    margin:0px;
+}
+.toast .toast-body{
+    padding: 0 7px 5px;
+}
+.toast .toast-body ul {
+    padding: 0 18px;
+    margin-bottom: 0;
+    list-style: none;
+}
+.toast .progress{
+    margin:0px;
+    height:6px;
+    border-radius:0px;
+    background-color:transparent;
+    box-shadow:none;
+}
+.toast .progress .progress-bar{
+    background-color:#f40;
+    float:right;
+    width:0%;
+}
+.toast .progress .waited{
+    width:100%;
+    transition: width 4s linear 1s;
+}
+#wrapper form {
+    width: 280px;
+    padding: 20px;
+}
+#wrapper form input[type="submit"]{
+    width:80%;
+    margin:auto;
+}
