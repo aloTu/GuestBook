@@ -20,6 +20,7 @@ namespace GuestBook.Controllers
             FormsAuthenticationTicket c = FormsAuthentication.Decrypt(encCookie);//对cookie 解码
             int UserId = int.Parse(c.Name); // c.Name 记录了 UserID  c.UserData记录了用户类型用以验证
             var gb = db.Guestbooks.OrderByDescending(g => g.CreatedOn).ToList();
+            string msgNumbers = gb.FindAll(s => s.isPass == false).Count.ToString();
             if (type == "我的" )
             {
                 gb = gb.FindAll(s => s.UserId == UserId);
@@ -35,6 +36,7 @@ namespace GuestBook.Controllers
             {
                 gb = gb.FindAll(s => s.isPass == true);
             }
+            ViewData["msg-numbers"] = msgNumbers;
             ViewData["SRole"] = c.UserData;//将 用户类型传入
             ViewData["type"] = type;
             return View(gb);

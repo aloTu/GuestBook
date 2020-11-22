@@ -18,9 +18,6 @@
     box-shadow:3px 3px 6px #99d18f;
     color:#99d18fcd;
 }
-.nav-header .btn:hover{
-    background-color:red;
-}
 .panel {
     box-shadow: 5px 5px 10px #bbb;
     background-color: #008c8c77;
@@ -47,15 +44,26 @@
     bottom:3px;
     right:6px;
 }
+.ctrlarea a{
+    padding:5px;
+    display:inline-block;
+    text-decoration:none;
+    color:rgba(23, 128, 194, 0.85)
+}
+.ctrlarea a:hover{
+   transform:scale(1.1);
+   transition:all .6s ease-in-out .2s;
+}
 .msg-wrapper {
-    display:none;
+    display: none;
     position: fixed;
+    z-index: 100;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    background:rgba(22,22,22,.8);
+    background: rgba(22,22,22,.8);
 }
 .show{
     display:block;

@@ -14,13 +14,16 @@
     <li role="presentation">
         @Html.ActionLink("全部留言", "AllWord")
     </li>
-@if (@ViewData["SRole"].ToString() == "管理员")
-{
-     <li role="presentation">
-         @Html.ActionLink("待处理","AllWord",new { type = "待处理" })
-         <span id="msg-numbers"></span>
-     </li>
-}
+    @if (@ViewData["SRole"].ToString() == "管理员")
+    {
+        <li role="presentation">
+            @Html.ActionLink("待处理", "AllWord", new { type = "待处理" })
+            @if (@ViewData["msg-numbers"].ToString() != "0")
+            {
+                <span id="msg-numbers">@ViewData["msg-numbers"].ToString()</span>
+            }
+        </li>
+    }
     <li role="presentation">
         @Html.ActionLink("我的留言", "AllWord", new { type = "我的" })
     </li>
@@ -49,7 +52,8 @@
                 else if (@ViewData["type"].ToString() == "我的")
                 {
                     @Html.ActionLink("删除留言", "delete", new { id = gb.GuestbookId });
-                }else if(ViewData["type"].ToString()=="全部" && @ViewData["SRole"].ToString() == "管理员")
+                }
+                else if (ViewData["type"].ToString() == "全部" && @ViewData["SRole"].ToString() == "管理员")
                 {
                     @Html.ActionLink("删除留言", "delete", new { id = gb.GuestbookId });
 
@@ -58,6 +62,7 @@
         </div>
     </div>
 }
+
 @section scripts{
     <script>
         var type = "@ViewData["type"]";
@@ -71,8 +76,6 @@
             chosen = isAdmin ? 3 : 2;
         } else if (type == "待处理" && isAdmin) {
             chosen = 2;
-            msgNumbers = document.getElementById("msg-numbers");
-            msgNumbers.innerHTML ="@Model.Count"
         };
         var cur = document.querySelectorAll("li[ role='presentation']")[chosen];
         cur.classList.add("active");
