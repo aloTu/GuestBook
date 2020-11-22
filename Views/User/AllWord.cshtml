@@ -18,6 +18,7 @@
 {
      <li role="presentation">
          @Html.ActionLink("待处理","AllWord",new { type = "待处理" })
+         <span id="msg-numbers"></span>
      </li>
 }
     <li role="presentation">
@@ -39,6 +40,21 @@
         </div>
         <div class="panel-body">
             @gb.Content
+            <div class="ctrlarea">
+                @if (@ViewData["type"].ToString() == "待处理")
+                {
+                    @Html.ActionLink("审核通过", "checkMessage", new { id = gb.GuestbookId });
+                    @Html.ActionLink("删除留言", "delete", new { id = gb.GuestbookId });
+                }
+                else if (@ViewData["type"].ToString() == "我的")
+                {
+                    @Html.ActionLink("删除留言", "delete", new { id = gb.GuestbookId });
+                }else if(ViewData["type"].ToString()=="全部" && @ViewData["SRole"].ToString() == "管理员")
+                {
+                    @Html.ActionLink("删除留言", "delete", new { id = gb.GuestbookId });
+
+                }
+            </div>
         </div>
     </div>
 }
@@ -48,12 +64,15 @@
         var isAdmin = "@ViewData["SRole"]" == "管理员";
         var wrapper = document.getElementById("showCreateMsg");
         var oIframe = document.createElement('iframe');
+        var msgNumbers = null;
 
         var chosen = 1;//默认选中全部
         if (type == "我的") {
             chosen = isAdmin ? 3 : 2;
         } else if (type == "待处理" && isAdmin) {
             chosen = 2;
+            msgNumbers = document.getElementById("msg-numbers");
+            msgNumbers.innerHTML ="@Model.Count"
         };
         var cur = document.querySelectorAll("li[ role='presentation']")[chosen];
         cur.classList.add("active");

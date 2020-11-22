@@ -24,7 +24,7 @@ namespace GuestBook.Controllers
             {
                 gb = gb.FindAll(s => s.UserId == UserId);
             }
-            if(type=="待处理")
+            if(type=="待处理" && c.UserData=="管理员")
             {
                 gb = gb.FindAll(s => s.isPass == false);
             }else if (type == "我的")
@@ -64,14 +64,26 @@ namespace GuestBook.Controllers
         [Authorize]
         public ActionResult delete(int id)
         {
+            string encCookie = Request.Cookies[FormsAuthentication.FormsCookieName].Value; //获取请求中附带的cookie
+            FormsAuthenticationTicket c = FormsAuthentication.Decrypt(encCookie);//对cookie 解码
+            int userId = int.Parse(c.Name);
             var gb = db.Guestbooks.Find(id);
-            return View(gb);
+
+            if (userId == gb.UserId || c.UserData == "管理员")
+            {
+                db.Guestbooks.Remove(gb);
+                db.SaveChanges();
+                return RedirectToAction("AllWord");
+            }
+            return RedirectToAction("Index", "Home");
         }
-        [HttpPost,ActionName("delete")]
-        public ActionResult deleteConfirmed(int id)
+
+        [Authorize(Roles ="管理员")]
+        [HttpGet]
+        public ActionResult checkMessage(int id)
         {
             var gb = db.Guestbooks.Find(id);
-            db.Guestbooks.Remove(gb);
+            gb.isPass = true;
             db.SaveChanges();
             return RedirectToAction("AllWord");
         }
