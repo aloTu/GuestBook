@@ -59,8 +59,8 @@
         cur.classList.add("active");
 
         var closebtn = document.getElementById("closeMsg");
-        closebtn.onclick = functin(){
-            wrapper.appendChild(oIframe);
+        closebtn.onclick = function(){
+            wrapper.removeChild(oIframe);
             document.getElementById("showCreateMsg").classList.remove("show");
         }
 

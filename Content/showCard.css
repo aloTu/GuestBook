@@ -70,3 +70,6 @@
     color: aliceblue;
     font-size: 3rem;
 }
+#closeMsg:hover{
+    color:red;
+}

@@ -78,6 +78,8 @@ textarea{
 #wrapper form {
     width: 280px;
     padding: 20px;
+    background-color: #472c62;
+    border-radius: 12px;
 }
 #wrapper form input[type="submit"]{
     width:38%;
