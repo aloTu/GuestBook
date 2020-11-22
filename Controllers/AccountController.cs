@@ -35,14 +35,7 @@ namespace GuestBook.Controllers
                    //使用加入了userdata的新cookie 
                     Response.Cookies.Add(authCookie);
 
-                    if (dbUser.SRole.ToString() == "管理员")
-                    {
-                        return RedirectToAction("checkIndex", "Admin");
-                    }
-                    else if (dbUser.SRole.ToString() == "普通用户")
-                    {
-                       return RedirectToAction("AllWord", "User");
-                    }
+                    return RedirectToAction("AllWord", "User");
                 }
             }
             ModelState.AddModelError("", "用户名或密码错误");

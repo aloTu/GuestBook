@@ -7,7 +7,6 @@
     <h2>留言本</h2>
     <a class="btn btn-default" href="~/Account/Logout" role="button">登出</a>
 </div>
-<span id="type" style="display:none">@ViewData["type"]</span>
 <ul class="nav nav-tabs">
     <li role="presentation">
         <a id="addMsg" onclick="openCreateMsg(); return false;">添加留言</a>
@@ -15,14 +14,19 @@
     <li role="presentation">
         @Html.ActionLink("全部留言", "AllWord")
     </li>
+@if (@ViewData["SRole"].ToString() == "管理员")
+{
+     <li role="presentation">
+         @Html.ActionLink("待处理","AllWord",new { type = "待处理" })
+     </li>
+}
     <li role="presentation">
-        @Html.ActionLink("我的留言", "AllWord", new { type = 0 })
+        @Html.ActionLink("我的留言", "AllWord", new { type = "我的" })
     </li>
 </ul>
-@*<div id="showCreateMsg">
-    <iframe name="main" sandbox="allow-forms" src="~/User/Create"></iframe>
-</div>*@
-
+<div id="showCreateMsg" class="msg-wrapper">
+    <span id="closeMsg" class="glyphicon glyphicon-remove"></span>
+</div>
 @foreach (var gb in Model)
 {
     <div class="panel panel-default">
@@ -40,12 +44,30 @@
 }
 @section scripts{
     <script>
-        var type = document.getElementById("type").innerHTML;
-        var cur = document.querySelectorAll("li[ role='presentation']")[2 - type];
-        cur.classList.add("active")
-        var btn = document.getElementById("addMsg"); 
-        function openCreateMsg() {
+        var type = "@ViewData["type"]";
+        var isAdmin = "@ViewData["SRole"]" == "管理员";
+        var wrapper = document.getElementById("showCreateMsg");
+        var oIframe = document.createElement('iframe');
 
+        var chosen = 1;//默认选中全部
+        if (type == "我的") {
+            chosen = isAdmin ? 3 : 2;
+        } else if (type == "待处理" && isAdmin) {
+            chosen = 2;
+        };
+        var cur = document.querySelectorAll("li[ role='presentation']")[chosen];
+        cur.classList.add("active");
+
+        var closebtn = document.getElementById("closeMsg");
+        closebtn.onclick = functin(){
+            wrapper.appendChild(oIframe);
+            document.getElementById("showCreateMsg").classList.remove("show");
+        }
+
+        function openCreateMsg() {
+            oIframe.src = '/User/Create';
+            wrapper.appendChild(oIframe);
+            document.getElementById("showCreateMsg").classList.add("show");
         }
     </script>
 }

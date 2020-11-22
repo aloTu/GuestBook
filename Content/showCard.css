@@ -1,6 +1,5 @@
 ﻿body {
     background-color: #ddd;
-    overflow:hidden;
     padding: 50px 50px;
 }
 .nav-header{
@@ -37,14 +36,20 @@
 .admin{
 
 }
-#showCreateMsg {
-    position: absolute;
+
+
+.msg-wrapper {
+    display:none;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    background:rgba(22,22,22,.6);
+    background:rgba(22,22,22,.8);
+}
+.show{
+    display:block;
 }
 #showCreateMsg iframe {
     position: absolute;
@@ -53,7 +58,15 @@
     left: 0;
     right: 0;
     margin: auto;
-    border: 3px solid red;
+    border:0px;
     width: 400px;
     height: 400px;
+    background-color:transparent;
+}
+#closeMsg{
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    color: aliceblue;
+    font-size: 3rem;
 }
